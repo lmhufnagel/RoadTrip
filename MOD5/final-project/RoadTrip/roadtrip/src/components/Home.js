@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { fetchUsers } from '../actions/users'
 import { connect } from 'react-redux'
-import { Input, Menu, Button, Header, Image } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Input, Button, Header, Image } from 'semantic-ui-react'
+// import { Link } from 'react-router-dom'
 
 class Home extends Component {
 
@@ -23,7 +23,7 @@ class Home extends Component {
         <Input placeholder='Email' value={this.state.email} />
         <Input placeholder='Password' value={this.state.password} />
         <Button >Login</Button>
-        <Image src='https://defensivetraininggroup.files.wordpress.com/2017/03/roadtrip.jpg' size='large'/>
+        <Image src='https://d2fzf9bbqh0om5.cloudfront.net/images/5388/original/make_your_road_trip_an_epic_adventure.jpg?1431399237' size='large'/>
       </div>
     )
   }
