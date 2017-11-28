@@ -53,3 +53,26 @@ export function fetchTrips(searchTerm) {
       )})
   }
 }
+
+
+export function createTrip(tripObj) {
+  return function(dispatch) {
+    dispatch({type: "CREATING_TRIP"})
+    BackendAPI.createTrip(tripObj)
+      .then(json => {
+        dispatch({type: "CREATE_TRIP", payload: json})
+      }
+    )
+  }
+}
+
+export function fetchTrip(id) {
+  return function(dispatch) {
+    dispatch({type: "LOADING_TRIPS"})
+    BackendAPI.fetchTrip(id)
+      .then(json => {
+        dispatch({type: "FETCH_TRIP", payload: json})
+      }
+    )
+  }
+}
