@@ -10,7 +10,13 @@ import { Route } from "react-router-dom";
 
 class App extends Component {
   state = {
-
+    reservedSeats: []
+  };
+  
+  reserveSeat = seat => {
+    this.setState({
+      reservedSeats: [...this.state.reservedSeats, seat]
+    });
   };
 
   render() {
@@ -19,7 +25,12 @@ class App extends Component {
       <div className="App">
       <Route path='/' component={NavBar} />
       <Route path="/" exact component={Home}/>
-      <Route path="/trips" exact component={TripContainer}/>
+      <Route
+        path="/trips"
+        render={props => (
+          <TripContainer {...props} onReserve={this.reserveSeat} />
+        )}
+      />
       <Route path="/reviews" exact component={ReviewList}/>
       <Route path="/about" exact component={About}/>
       <Route path="/create" exact component={CreateTrip}/>

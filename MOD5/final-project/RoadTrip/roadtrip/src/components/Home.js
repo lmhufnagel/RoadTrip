@@ -23,7 +23,7 @@ class Home extends Component {
         <Input placeholder='Email' value={this.state.email} />
         <Input placeholder='Password' value={this.state.password} />
         <Button >Login</Button>
-        <Image src='https://d2fzf9bbqh0om5.cloudfront.net/images/5388/original/make_your_road_trip_an_epic_adventure.jpg?1431399237' size='large'/>
+        <Image src='https://d2fzf9bbqh0om5.cloudfront.net/images/5388/original/make_your_road_trip_an_epic_adventure.jpg?1431399237' size='huge'/>
       </div>
     )
   }

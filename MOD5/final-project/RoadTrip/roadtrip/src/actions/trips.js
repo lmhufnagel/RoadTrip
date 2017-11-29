@@ -76,3 +76,31 @@ export function fetchTrip(id) {
     )
   }
 }
+
+export function reserveSeat(tripObj) {
+  return function(dispatch) {
+    BackendAPI.reserveSeat(tripObj)
+      .then(json => {
+        dispatch({type: "RESERVE_SEAT"})
+      })
+  }
+}
+
+export function selectTrip(trip) {
+  return {
+    type: "SELECT_BOOK",
+    payload: trip
+  };
+}
+
+//write reserveSeat function
+
+// export function filterTrips(start_location, end_location, trips) {
+//   return function(dispatch) {
+//     const sortedTrips = Trips.filter((trip) => {
+//
+//       return trip.start_location.toLowerCase() === end_location.toLowerCase() && trip.end_location.toLowerCase() === end_location.toLowerCase()
+//     })
+//     dispatch(setCurrentTrips(sortedTrips))
+//   }
+// }
