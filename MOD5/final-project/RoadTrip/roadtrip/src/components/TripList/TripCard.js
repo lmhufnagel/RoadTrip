@@ -53,6 +53,7 @@ class TripCard extends Component {
     this.props.onSelect(this.props.trip);
   };
   render() {
+    console.log(this.props);
     return (
       <Card>
         <Card.Content>

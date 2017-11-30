@@ -4,7 +4,7 @@ export function fetchUsers() {
   return function(dispatch) {
     BackendAPI.fetchUsers()
       .then(json => {
-        dispatch({type: "FETCH_USERS", payload: json}
+        dispatch({type: "FETCH_USERS", payload: json.users}
       )})
   }
 }

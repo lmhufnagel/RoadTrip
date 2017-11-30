@@ -33,21 +33,23 @@
 //   }
 // }
 
+// import BackendAPI from '../services/BackendAPI.js'
+//
+// export function fetchUsers() {
+//   return function(dispatch) {
+//     BackendAPI.fetchUsers()
+//       .then(json => {
+//         dispatch({type: "FETCH_USERS", payload: json}
+//       )})
+//   }
+// }
+
 import BackendAPI from '../services/BackendAPI.js'
 
-export function fetchUsers() {
-  return function(dispatch) {
-    BackendAPI.fetchUsers()
-      .then(json => {
-        dispatch({type: "FETCH_USERS", payload: json}
-      )})
-  }
-}
 
-export function fetchTrips(searchTerm) {
+export function fetchTrips() {
   return function(dispatch) {
-    dispatch({type: "LOADING_TRIPS"})
-    BackendAPI.fetchTrips(searchTerm)
+    BackendAPI.fetchTrips()
       .then(json => {
         dispatch({type: "FETCH_TRIPS", payload: json}
       )})
@@ -88,10 +90,11 @@ export function reserveSeat(tripObj) {
 
 export function selectTrip(trip) {
   return {
-    type: "SELECT_BOOK",
+    type: "SELECT_TRIP",
     payload: trip
   };
 }
+
 
 //write reserveSeat function
 

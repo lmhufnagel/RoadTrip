@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { fetchUsers } from '../actions/users'
+import { fetchTrips } from '../actions/trips'
 import { connect } from 'react-redux'
 import { Input, Button, Header, Image } from 'semantic-ui-react'
 // import { Link } from 'react-router-dom'
@@ -13,6 +14,8 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.fetchUsers()
+
+    this.props.fetchTrips()
   }
 
 
@@ -29,12 +32,8 @@ class Home extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchUsers: () => {
-      dispatch(fetchUsers())
-    }
-  }
+const mapDispatchToProps = {
+    fetchUsers, fetchTrips
 }
 
 export default connect(null, mapDispatchToProps)(Home)

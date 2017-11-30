@@ -7,12 +7,15 @@ import About from "./components/About";
 import CreateTrip from "./components/CreateTrip";
 import ReviewList from "./components/ReviewList";
 import { Route } from "react-router-dom";
+import { fetchTrips } from './actions/trips.js'
 
 class App extends Component {
   state = {
     reservedSeats: []
   };
-  
+
+
+
   reserveSeat = seat => {
     this.setState({
       reservedSeats: [...this.state.reservedSeats, seat]

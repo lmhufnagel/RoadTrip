@@ -5,7 +5,7 @@ import { createTrip } from '../actions/trips.js'
 
 const location_options = [
   { key: 'NYC', text: 'New York, NY', value: 'New York, NY' },
-  { key: 'BOS', text: 'Boston', value: 'Boston' },
+  { key: 'BOS', text: 'Boston, MA', value: 'Boston, MA' },
   { key: 'DC', text: 'Washington, DC', value: 'Washington, DC' },
   { key: 'PHIL', text: 'Philidelphia, PA', value: 'Philidelphia, PA' }
 ]
@@ -58,8 +58,10 @@ class CreateTripForm extends Component {
     end_location: "",
     end_time: "",
     end_am_pm: "",
+    stops: false,
     car: "",
     available_seats: 0,
+    seat_price: 0,
     duration: "",
     comments: ""
   }
@@ -67,22 +69,38 @@ class CreateTripForm extends Component {
  handleUsernameChange = (e, { value }) => this.setState({ username: value })
  handleFirstNameChange = (e, { value }) => this.setState({ first_name: value })
  handleLastNameChange = (e, { value }) => this.setState({ last_name: value })
- handleStartLocationChange = (e, { value }) => this.setState({ depart: value })
+ handleStartLocationChange = (e, { value }) => this.setState({ start_location: value })
  handleStartMonthChange = (e, { value }) => this.setState({start_month: value})
  handleStartDayChange = (e, { value }) => this.setState({start_day: value})
  handleStartTimeChange = (e, { value }) => this.setState({start_time: value})
  handleStartAmPmChange = (e, { value }) => this.setState({start_am_pm: value})
  handleEndLocationChange = (e, { value }) => this.setState({ end_location: value })
- handleEndTimeChange = (e, { value }) => this.setState({endTime: value})
+ handleEndTimeChange = (e, { value }) => this.setState({end_time: value})
  handleEndAmPmChange = (e, { value }) => this.setState({end_am_pm: value})
  handleCarChange = (e, { value }) => this.setState({ car: value })
- handleAvailSeatsChange = (e, { value }) => this.setState({ avail_seats: value })
+ handleStopsChange = (e, { value }) => this.setState({ stops: value })
+ handleAvailSeatsChange = (e, { value }) => this.setState({ available_seats: value })
+ handleAvailSeatPriceChange = (e, { value }) => this.setState({ seat_price: value })
  handleDurationChange = (e, { value }) => this.setState({ duration: value })
  handleCommentsChange = (e, { value }) => this.setState({ comments: value })
 
  handleSubmit = (e) => {
      e.preventDefault()
-     const tripObj = {trip: this.state}
+     const tripObj = {trip: {
+       driver_username: this.state.username,
+       driver_name: this.state.first_name + " " + this.state.last_name,
+       start_location: this.state.start_location,
+       start_time: this.state.start_month + " " + this.state.start_day + ", " + this.state.start_time + this.state.start_am_pm,
+       end_location: this.state.end_location,
+       end_time: this.state.end_time + this.state.end_am_pm,
+       stops: this.state.stops,
+       car: this.state.car,
+       available_seats: this.state.available_seats,
+       seat_price:this.state.seat_price,
+       duration: this.state.duration,
+       comments: this.state.comments,
+      }
+    }
     //  tripObj.trip.owner_id = this.props.currentUser.id
      console.log(tripObj);
      this.props.createTrip(tripObj)
@@ -115,11 +133,17 @@ class CreateTripForm extends Component {
         <Form.Select  label='Arrival Time' options={time} placeholder='Select' onChange={this.handleEndTimeChange}/>
         <Form.Select  label='am/pm' options={am_pm} placeholder='Select' onChange={this.handleEndAmPmChange}/>
        </Form.Group>
+       <Form.Group inline>
+          <label>Willing to make stops along the way?</label>
+          <Form.Radio label='Yes' value='true' checked={value === 'true'} onChange={this.handleChange} />
+          <Form.Radio label='No' value='false' checked={value === 'false'} onChange={this.handleChange} />
+        </Form.Group>
        <Form.Group widths='equal'>
         <Form.Input  label='Car Make/Model' placeholder='' onChange={this.handleCarChange}/>
        </Form.Group>
        <Form.Group widths='equal'>
         <Form.Input  label='Seats Available' placeholder='' onChange={this.handleAvailSeatsChange}/>
+        <Form.Input  label='Seat Price' placeholder='$' onChange={this.handleAvailSeatPriceChange}/>
         <Form.Input  label='Estimated length of trip' placeholder='in hours' onChange={this.handleDurationChange}/>
        </Form.Group>
        <Form.TextArea  label='Comments' placeholder='Anything else your riders should know? Music preferences, will you make stops...' onChange={this.handleCommentsChange}/>

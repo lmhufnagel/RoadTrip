@@ -1,15 +1,29 @@
 import React, { Component } from "react";
 import { Card, Icon, Image } from "semantic-ui-react";
-const TripShow = props => {
-  const handleClick = () => {
-    props.onReserve(props.trip);
+import TripList from "./TripList"
+import { fetchTrips } from '../../actions/trips'
+import { Loading } from '../Loading.js'
+import { connect } from "react-redux";
+
+class TripListContainer extends Component{
+  state = {filters: []}
+
+  componentDidMount() {
+    const searchTerm = this.props.location.search.split("=")[1].split("%20").join(" ")
+    this.props.fetchKitchens(searchTerm)
+  }
+
+   handleClick = () => {
+    this.props.onReserve(this.props.trip);
   };
+
+render(){
   return (
     <div>
-      {props.trip.title ? (
+
         <Card>
           <Card.Content>
-            <Card.Header>{props.trip.title}</Card.Header>
+            <Card.Header>{this.props.trip.title}</Card.Header>
             <Card.Meta>
               <span className="location">{this.props.trip.start_location}</span>
             </Card.Meta>
@@ -17,17 +31,29 @@ const TripShow = props => {
             <Card.Description>{this.props.trip.end_location}</Card.Description>
             <Card.Description>{this.props.trip.start_time}</Card.Description>
             <Card.Description>{this.props.trip.end_time}</Card.Description>
-          <Card.Content extra onClick={handleClick}>
-            <Icon name="seat" />
+          <Card.Content extra onClick={this.handleClick}>
+            <Icon name="seatRes" />
             Reserve a seat
           </Card.Content>
+          </Card.Content>
         </Card>
-      ) : null}
+
     </div>
   );
 };
+}
+function mapStateToProps(state){
+  console.log(state);
+  return ({
+    isLoading: state.isLoading,
+    trips: state.trips
+  })
+}
 
-export default TripShow;
+
+
+
+export default connect(mapStateToProps)(TripListContainer)
 
 // import React, { Component } from 'react';
 // // import MapContainer from './map/MapContainer';
