@@ -1,47 +1,63 @@
-//
-// export default function tripReducer(
-//   state = {
-//     trips: [],
-//     driver: {}
-//     passengers:[]
-//     selectedTrip: {}
-//   },
-//   action
-// ) {
-//   switch (action.type) {
-//     case "ADD_NEW_TRIP":
-//       return Object.assign({}, state, { trips: [...state.trips, action.payload] })
-//     case "SELECT_TRIP":
-//       return Object.assign({}, state, {selectedTrip: action.payload})
-//     case "CHOOSE_DRIVER":
-//       return Object.assign({}, state, {
-//         driver: action.payload});
-//     case "ADD_PASSENGERS":
-//       return Object.assign({}, state, {passengers: [...state.passengers, action.payload]})
-//     case "LOADING":
-//       console.log("Loading")
-//       return {...state}
-//     default:
-//       return state;
+// function tripReducer(
+//   state = {trips: [], selectedTrip: {}}, action){
+//     switch (action.type){
+//       case "SELECT_TRIP":
+//         return Object.assign({}, state, {selectTrip: action.payload})
+//       case "FETCH_TRIPS":
+//         console.log("REDUCER FOR TRIPS", action.payload);
+//         return {...state, trips: action.payload, isLoading: false}
+//       default:
+//         return state
+//     }
 //   }
-// }
-
-
-
-export function tripReducer(state = {
+//   export default tripReducer
+export default function tripReducer(
+  state = {
     trips: [],
-    list: [],
+    driver: {},
+    passengers:[],
     selectedTrip: {},
-    isLoading: false
-  }, action) {
-
-  switch(action.type) {
+    trip: {}
+  },
+  action
+) {
+  switch (action.type) {
     case "FETCH_TRIPS":
-      return {...state, list: action.payload, isLoading: false}
-    case "LOADING_TRIPS":
-      return {...state, isLoading: true}
+      console.log("REDUCER FOR TRIPS", action.payload);
+      return {...state, trips: action.payload, isLoading: false}
+    case "ADD_NEW_TRIP":
+      return Object.assign({}, state, { trips: [...state.trips, action.payload] })
+    case "SELECT_TRIP":
+      return Object.assign({}, state, {selectedTrip: action.payload})
+    case "CHOOSE_DRIVER":
+      return Object.assign({}, state, {
+        driver: action.payload});
+    case "ADD_PASSENGERS":
+      return Object.assign({}, state, {passengers: [...state.passengers, action.payload]})
+    case "LOADING":
+      console.log("Loading")
+      return {...state}
     default:
-      return state
+      return state;
   }
-
 }
+
+
+//
+// export default function tripReducer(state = {
+//     trips: [],
+//     selectedTrip: {},
+//     isLoading: false
+//   }, action) {
+//
+//   switch(action.type) {
+//     case "FETCH_TRIPS":
+//       console.log("REDUCER FOR TRIPS", action.payload);
+//       return {...state, trips: action.payload, isLoading: false}
+//     case "LOADING_TRIPS":
+//       return {...state, isLoading: true}
+//     default:
+//       return state
+//   }
+//
+// }

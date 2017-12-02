@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import TripList from ".././components/TripList/TripList";
+import TripList from "../components/TripList/TripList";
 import TripCard from ".././components/TripList/TripCard";
-import TripListContainer from ".././components/TripList/TripListContainer";
 import { Grid } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { fetchTrips, reserveSeat, selectTrip } from "../actions/trips";
@@ -12,27 +11,20 @@ class TripContainer extends Component {
 
 
   componentDidMount() {
-    this.props.fetchTrips(this.props.trips)
+    this.props.fetchTrips()
   }
 
   render() {
-    console.log(this.props.trips);
+    console.log("TRIPCONTAINER", this.props.trips);
+
     return (
       <div>
-        <Grid>
-          <Grid.Column width={4}>
-            <TripList trips={this.props.trips} selectTrip={this.props.onSelect} />
-          </Grid.Column>
-          <Grid.Column width={9}>
-            <TripCard
-              trip={this.props.selectedTrip}
-              onReserve={this.props.onReserve}
-            />
-          </Grid.Column>
-        </Grid>
+        <TripList />
       </div>
-    );
+    )
   }
+
+
 }
 
 function mapStateToProps(state) {

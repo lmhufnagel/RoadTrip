@@ -20,6 +20,7 @@ class Home extends Component {
 
 
   render() {
+    console.log("HOME", this.props);
     return (
       <div className="home">
       <Header> Login </Header>

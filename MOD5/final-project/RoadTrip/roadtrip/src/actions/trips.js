@@ -1,60 +1,6 @@
-// export function addNewTrip(trip){
-//   return {
-//     type: "ADD_NEW_TRIP",
-//     payload: trip
-//   }
-// }
-//
-// export function selectTrip(trip){
-//   return{
-//     type: "SELECT_TRIP",
-//     payload: trip
-//   }
-// }
-//
-// export function chooseDriver(user){
-//   return{
-//     type: "CHOOSE_DRIVER",
-//     payload: user
-//   }
-// }
-//
-// export function addPassenger(user){
-//   return{
-//     type: "ADD_PASSENGER",
-//     payload: user
-//   }
-// }
-//
-// export function loading() {
-//   return{
-//     type: "LOADING",
-//     payload: ...state
-//   }
-// }
 
-// import BackendAPI from '../services/BackendAPI.js'
-//
-// export function fetchUsers() {
-//   return function(dispatch) {
-//     BackendAPI.fetchUsers()
-//       .then(json => {
-//         dispatch({type: "FETCH_USERS", payload: json}
-//       )})
-//   }
-// }
 
 import BackendAPI from '../services/BackendAPI.js'
-
-
-export function fetchTrips() {
-  return function(dispatch) {
-    BackendAPI.fetchTrips()
-      .then(json => {
-        dispatch({type: "FETCH_TRIPS", payload: json}
-      )})
-  }
-}
 
 
 export function createTrip(tripObj) {
@@ -68,12 +14,13 @@ export function createTrip(tripObj) {
   }
 }
 
-export function fetchTrip(id) {
+export function fetchTrips() {
   return function(dispatch) {
+    console.log("FETCHING TRIPS");
     dispatch({type: "LOADING_TRIPS"})
-    BackendAPI.fetchTrip(id)
+    BackendAPI.fetchTrips()
       .then(json => {
-        dispatch({type: "FETCH_TRIP", payload: json})
+        dispatch({type: "FETCH_TRIPS", payload: json})
       }
     )
   }

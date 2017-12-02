@@ -9,6 +9,17 @@ export function fetchUsers() {
   }
 }
 
+export function createUser(userObj) {
+  return function(dispatch) {
+    dispatch({type: "CREATING_USER"})
+    BackendAPI.createUser(userObj)
+      .then(json => {
+        dispatch({type: "CREATE_USER", payload: json})
+      }
+    )
+  }
+}
+
 // import api from '../services/apiRequests'
 //
 // export function fetchUsers(){

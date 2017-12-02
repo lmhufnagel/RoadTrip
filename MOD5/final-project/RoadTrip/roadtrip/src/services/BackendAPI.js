@@ -9,7 +9,7 @@ export default class BackendAPI {
   }
 
   static fetchTrips(searchTerm) {
-    const url = `${BASE_URL}/trips?query=${searchTerm}`
+    const url = `${BASE_URL}/trips`
     return fetch(url)
       .then(res => res.json())
   }

@@ -7,11 +7,12 @@ import 'semantic-ui-css/semantic.min.css';
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import rootReducer from "./reducers/rootReducer";
+import {rootReducer} from "./reducers/rootReducer";
+import  tripReducer  from './reducers/tripReducer.js'
 import { BrowserRouter as Router } from "react-router-dom";
 
 
-const store = createStore(rootReducer, compose(applyMiddleware(thunk),  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(tripReducer, compose(applyMiddleware(thunk),  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 )
 
