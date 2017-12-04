@@ -27,12 +27,6 @@ class NavBar extends Component {
           </Menu.Item>
 
           <Menu.Item>
-            <Link to="/signup">
-              <h3>Sign Up</h3>
-            </Link>
-          </Menu.Item>
-
-          <Menu.Item>
             <Link to="/trips">
               <h3>Find a Ride</h3>
             </Link>

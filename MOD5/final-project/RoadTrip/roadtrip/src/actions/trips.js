@@ -53,13 +53,18 @@ export function searchStart(trips, start_location) {
   };
 }
 
-export function searchEnd(trips, end_location) {
-  return function(dispatch) {
-    const sortedtrips = trips.filter((trip) => {
-      return trip.end_location === end_location
-    })
+export function setFilteredTrips(filteredTrips) {
+  return {
+    type: "SET_FILTERED_TRIPS",
+    payload: filteredTrips,
+  }
+}
 
-  };
+export function setLastTripFiltered(filteredTrips){
+  return{
+    type: "LAST_TRIP_FILTERED",
+    payload: filteredTrips
+  }
 }
 
 

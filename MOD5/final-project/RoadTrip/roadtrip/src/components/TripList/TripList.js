@@ -7,9 +7,7 @@ import { connect } from "react-redux";
 
 class TripList extends Component {
 
-  componentDidMount() {
-    this.props.fetchTrips()
-  }
+
 
   render() {
     console.log('TripList', this.props);
@@ -26,15 +24,5 @@ class TripList extends Component {
     }
   }
 
-function mapStateToProps(state) {
-  return {
-    trips: state.trips
-  };
-}
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchTrips: (trips) => dispatch(fetchTrips(trips))
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(TripList)
+export default TripList

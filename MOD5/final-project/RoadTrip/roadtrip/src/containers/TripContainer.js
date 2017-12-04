@@ -3,7 +3,7 @@ import TripList from "../components/TripList/TripList";
 import TripCard from ".././components/TripList/TripCard";
 import { Grid, Form, Button, Select } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { fetchTrips, reserveSeat, selectTrip, searchStart, searchEnd } from "../actions/trips";
+import { fetchTrips, reserveSeat, selectTrip, searchStart, searchEnd, setFilteredTrips, setLastTripFiltered } from "../actions/trips";
 
 const location_options = [
   { key: 'NYC', text: 'New York, NY', value: 'New York, NY' },
@@ -28,6 +28,7 @@ class TripContainer extends Component {
   }
 
   handleStartLocationChange = (event, data) => {
+    // console.log("data in func", data.value);
     this.setState({
       origin_option: data.value
     })
@@ -40,8 +41,19 @@ class TripContainer extends Component {
     })
   }
 
+  // componentDidMount = () => {
+  //     if(this.props.lastTripFiltered.length){
+  //       this.props.setFilteredTrips(this.props.lastTripFiltered)
+  //       console.log("this.props.lastTripFiltered", this.props.lastTripFiltered)
+  //     }
+  //   }
+
   render() {
     console.log("TRIPCONTAINER", this.props.trips);
+    console.log("origin", this.state.origin_option);
+
+    const filteredTrips = this.props.trips.filter(trip =>{ return trip.start_location.includes(this.state.origin_option ) && trip.end_location.includes(this.state.destination_option)})
+
 
     return (
       <div>
@@ -58,10 +70,20 @@ class TripContainer extends Component {
               options={location_options}
               />
             </Form.Field>
-
+            <Form.Field>
+              <label htmlFor="destination" className="end_location">Search by Destination</label>
+              <Select
+                name="destination"
+                id="destination"
+                onChange={this.handleEndLocationChange}
+                value={this.state.destination_option}
+                placeholder='Select'
+                options={location_options}
+              />
+            </Form.Field>
 
       </Form.Group>
-          <TripList trips={this.state.searchedTrips}/>
+      <TripList trips={filteredTrips}/>
       </div>
     )
   }
@@ -72,7 +94,9 @@ class TripContainer extends Component {
 function mapStateToProps(state) {
   console.log(state);
   return {
-    trips: state.trips
+    trips: state.trips,
+    filteredTrips: this.filteredTrips,
+    lastTripFiltered:this.lastTripFiltered
   };
 }
 
@@ -80,18 +104,11 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchTrips: (trips) => dispatch(fetchTrips(trips))
     }
+    searchStart,
+    setLastTripFiltered,
+    setFilteredTrips
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TripContainer);
 
-// Form.Field>
-//   label htmlFor="destination" className="end_location">Search by Destination</label>
-//   Select
-//     name="destination"
-//     id="destination"
-//     onChange={this.handleEndLocationChange}
-//     value={this.state.destination_option}
-//     placeholder='Neighborhood'
-//     options={location_options}
-//   />
-//   /Form.Field>
+
+export default connect(mapStateToProps, mapDispatchToProps)(TripContainer);
