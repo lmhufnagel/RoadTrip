@@ -1,52 +1,7 @@
-// import React from 'react'
-//
-// const TripCard = ({ trip }) => {
-//
-//   const driver = trip.driver_id
-//
-//   const driverRating = () => {
-//     const totalStars = driver.reviews.reduce((sum, review) => (sum + review.stars), 0)
-//     return (totalStars/driver.reviews.length)
-//   }
-//
-//   const available_seats = () => {
-//
-//   }
-//
-//
-//   return (
-//     <div className="ui card">
-//       <div className="image">
-//         <img src="" alt="pic"/>
-//       </div>
-//       <div className="content">
-//         <a className="start">{trip.start_location}</a>
-//         <a className="end">{trip.end_location}</a>
-//         <a classname="duration">{trip.duration}</a>
-//         <div className="meta">
-//           <span className="price">
-//             ${trip.price}
-//           </span>
-//         </div>
-//       <div classname="seats">
-//         <a classname="available">{trip.available_seats}
-//       </div>
-//       <div className="extra content">
-//         <a>
-//           <i className="star icon"></i>
-//           {driverRating()} stars
-//         </a>
-//       </div>
-//       <div className="comments">{trip.comments}</div>
-//     </div>
-//   )
-// }
-//
-// export default TripCard
-
 import React, { Component } from "react";
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Card, Icon, Image, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
+
 
 class TripCard extends Component {
   // handleClick = () => {
@@ -54,21 +9,30 @@ class TripCard extends Component {
   //   this.props.selectTrip(this.props.trip);
   // };
 
+  handleReserve = () => {
+// make post fetch to update the # of seats in car and add the trip to the user's queue
+  }
+
   createTripCards = () => {
     return this.props.trips.map(t => {
       return (
         <Card>
           <Card.Content>
             <Card.Header onClick={this.handleClick}>
+
               {t.username}
             </Card.Header>
             <Card.Meta>
               <span className="date">{t.start_location}</span>
             </Card.Meta>
-            <Card.Description>{t.start_location}</Card.Description>
-            <Card.Description>{t.end_location}</Card.Description>
-            <Card.Description>{t.start_time}</Card.Description>
-            <Card.Description>{t.end_time}</Card.Description>
+            <Card.Description> {t.start_location}</Card.Description>
+            <Card.Description> {t.start_time}</Card.Description>
+            <Card.Description> {t.end_location}</Card.Description>
+            <Card.Description> {t.end_time}</Card.Description>
+            <Card.Description>{t.available_seats}</Card.Description>
+            <Card.Description>{t.seat_price}</Card.Description>
+            <Card.Description>{t.car}</Card.Description>
+            <Card.Description>{t.comments}</Card.Description>
           </Card.Content>
         </Card>
       )
@@ -76,20 +40,27 @@ class TripCard extends Component {
   }
 
   render() {
-    console.log("Card State", this.state);
-    console.log("card", this.props);
+    // console.log("Card State", this.state);
+    // console.log("card", this.props);
 
     return (
-      <Card>
+      <Card fluid >
         <Card.Content>
           <Card.Header>
-            {this.props.driver_username} 
+          Driver: {this.props.driver_username}
           </Card.Header>
-          <Card.Description>{this.props.start_location}</Card.Description>
-          <Card.Description>{this.props.end_location}</Card.Description>
-          <Card.Description>{this.props.start_time}</Card.Description>
-          <Card.Description>{this.props.end_time}</Card.Description>
+          <Card.Description> Origin: {this.props.start_location} Departure Time: {this.props.start_time}</Card.Description>
+          <Card.Description></Card.Description>
+          <Card.Description>Destination: {this.props.end_location} Estimated Arrival Time: {this.props.end_time}</Card.Description>
+          <Card.Description>Available Seats: {this.props.available_seats}</Card.Description>
+          <Card.Description>Car: {this.props.car}</Card.Description>
+          <Card.Description>About this trip: {this.props.comments}</Card.Description>
         </Card.Content>
+        <Card.Content extra>
+        <div className='ui two buttons'>
+          <Button basic color='green' onClick={this.handleReserve}>Reserve a seat! </Button>
+        </div>
+      </Card.Content>
       </Card>
     )
   }

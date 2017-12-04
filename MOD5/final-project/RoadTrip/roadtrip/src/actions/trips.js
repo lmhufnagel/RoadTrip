@@ -43,6 +43,26 @@ export function selectTrip(trip) {
 }
 
 
+
+export function searchStart(trips, start_location) {
+  return function(dispatch) {
+    const sortedtrips = trips.filter((trip) => {
+      return trip.start_location === start_location
+    })
+
+  };
+}
+
+export function searchEnd(trips, end_location) {
+  return function(dispatch) {
+    const sortedtrips = trips.filter((trip) => {
+      return trip.end_location === end_location
+    })
+
+  };
+}
+
+
 //write reserveSeat function
 
 // export function filterTrips(start_location, end_location, trips) {
