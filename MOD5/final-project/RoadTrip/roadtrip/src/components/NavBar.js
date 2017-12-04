@@ -28,19 +28,19 @@ class NavBar extends Component {
 
           <Menu.Item>
             <Link to="/trips">
-              <h3>Find a Ride</h3>
+              <h3>Find a Trip</h3>
             </Link>
           </Menu.Item>
 
           <Menu.Item>
             <Link to="/create">
-              <h3>Create a Ride</h3>
+              <h3>Create a Trip</h3>
             </Link>
           </Menu.Item>
 
           <Menu.Item>
             <Link to="/view">
-              <h3>Your Rides</h3>
+              <h3>Your Trips</h3>
             </Link>
           </Menu.Item>
 

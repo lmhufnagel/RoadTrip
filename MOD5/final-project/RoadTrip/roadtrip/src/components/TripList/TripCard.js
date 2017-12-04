@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card, Icon, Image, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
+import { reserveSeat } from "../../actions/trips"
 
 
 class TripCard extends Component {
@@ -10,6 +11,18 @@ class TripCard extends Component {
   // };
 
   handleReserve = () => {
+    ;
+    if(this.props.available_seats <= 0 ){
+      return alert("There are no remaining seats on this trip")
+    }else {
+      console.log("clicked!", this.props.id)
+      const seatObj = {seat: {
+        trip_id: this.props.id,
+        user_id: 1
+      }}
+      this.props.reserveSeat(seatObj)
+      // this.props.removeSeat(this.props.available_seats - 1)
+    }
 // make post fetch to update the # of seats in car and add the trip to the user's queue
   }
 
@@ -33,6 +46,7 @@ class TripCard extends Component {
             <Card.Description>{t.seat_price}</Card.Description>
             <Card.Description>{t.car}</Card.Description>
             <Card.Description>{t.comments}</Card.Description>
+            <Card.Description>{t.id}</Card.Description>
           </Card.Content>
         </Card>
       )
@@ -45,7 +59,7 @@ class TripCard extends Component {
 
     return (
       <Card fluid >
-        <Card.Content>
+        <Card.Content extra>
           <Card.Header>
           Driver: {this.props.driver_username}
           </Card.Header>
@@ -55,11 +69,10 @@ class TripCard extends Component {
           <Card.Description>Car: {this.props.car}</Card.Description>
           <Card.Description>Rating: {this.props.rating}</Card.Description>
           <Card.Description>About this trip: {this.props.comments}</Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-        <div className='ui two buttons'>
-          <Button basic color='green' onClick={this.handleReserve}>Reserve a seat! </Button>
-        </div>
+          <Card.Description>Trip ID: {this.props.id}</Card.Description>
+          <div className='ui two buttons'>
+            <Button basic color='green' onClick={this.handleReserve}>Reserve a seat! </Button>
+          </div>
       </Card.Content>
       </Card>
     )
@@ -73,4 +86,15 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(TripCard)
+function mapDispatchToProps(dispatch) {
+  return {
+    // onSelect: trip => {
+    //   dispatch(selectTriptrip));
+    // },
+    reserveSeat: trip => {
+      dispatch(reserveSeat(trip));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TripCard)

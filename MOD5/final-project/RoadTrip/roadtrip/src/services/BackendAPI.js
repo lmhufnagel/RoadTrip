@@ -28,6 +28,21 @@ export default class BackendAPI {
       .then(res => res.json())
   }
 
+  static reserveSeat (seatObj){
+    const url = `${BASE_URL}seats`
+    const myInit = {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify(seatObj)
+    }
+    return fetch(url, myInit)
+      .then(res => res.json())
+  }
+
+
 }
 
   // static login(email, password) {

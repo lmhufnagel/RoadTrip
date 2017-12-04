@@ -12,7 +12,7 @@ const About = ({ About }) => {
       by the driver. They can review each other in both a star rating system
       and in comments.</h3>
     <div className="about image">
-    <Image src="https://defensivetraininggroup.files.wordpress.com/2017/03/roadtrip.jpg" size="huge" alt="pic"/>
+    <Image src="https://defensivetraininggroup.files.wordpress.com/2017/03/roadtrip.jpg" fluid alt="pic"/>
     </div>
     </div>
   )

@@ -30,7 +30,7 @@ export function reserveSeat(tripObj) {
   return function(dispatch) {
     BackendAPI.reserveSeat(tripObj)
       .then(json => {
-        dispatch({type: "RESERVE_SEAT"})
+        dispatch({type: "RESERVE_SEAT", payload: json})
       })
   }
 }

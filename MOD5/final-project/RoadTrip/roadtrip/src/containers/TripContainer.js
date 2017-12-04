@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { fetchTrips, reserveSeat, selectTrip, searchStart, searchEnd, setFilteredTrips, setLastTripFiltered } from "../actions/trips";
 
 const location_options = [
+  { key: 'any', text: 'any', value: '' },
   { key: 'NYC', text: 'New York, NY', value: 'New York, NY' },
   { key: 'BOS', text: 'Boston, MA', value: 'Boston, MA' },
   { key: 'DC', text: 'Washington, DC', value: 'Washington, DC' },

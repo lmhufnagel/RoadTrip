@@ -19,15 +19,16 @@ class Home extends Component {
   }
 
 
+  handleClick = () => {
+
+  }
+
+
   render() {
     console.log("HOME", this.props);
     return (
       <div className="home">
-      <Header> Login </Header>
-        <Input placeholder='Email' value={this.state.email} />
-        <Input placeholder='Password' value={this.state.password} />
-        <Button >Login</Button>
-        <Image src='https://d2fzf9bbqh0om5.cloudfront.net/images/5388/original/make_your_road_trip_an_epic_adventure.jpg?1431399237' size='huge'/>
+        <Image src='https://d2fzf9bbqh0om5.cloudfront.net/images/5388/original/make_your_road_trip_an_epic_adventure.jpg?1431399237' fluid/>
       </div>
     )
   }
@@ -38,3 +39,11 @@ const mapDispatchToProps = {
 }
 
 export default connect(null, mapDispatchToProps)(Home)
+
+
+
+// <Button basic color='blue' size='massive' Link to="/about">Demo</Button>
+
+// <Header> Login </Header>
+// <Input placeholder='Email' value={this.state.email} />
+// <Input placeholder='Password' value={this.state.password} />
