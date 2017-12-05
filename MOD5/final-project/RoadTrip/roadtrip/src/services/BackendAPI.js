@@ -8,7 +8,7 @@ export default class BackendAPI {
       .then(res => res.json())
   }
 
-  static fetchTrips(searchTerm) {
+  static fetchRides(searchTerm) {
     const url = `${BASE_URL}/trips`
     return fetch(url)
       .then(res => res.json())
@@ -29,17 +29,19 @@ export default class BackendAPI {
   }
 
   static reserveSeat (seatObj){
+    console.log(seatObj)
     const url = `${BASE_URL}seats`
     const myInit = {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        method: "POST",
+        method: "PATCH",
         body: JSON.stringify(seatObj)
     }
     return fetch(url, myInit)
       .then(res => res.json())
+      .then(data => console.log(data))
   }
 
 

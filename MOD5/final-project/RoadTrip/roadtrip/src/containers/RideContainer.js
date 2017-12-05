@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import TripList from "../components/TripList/TripList";
-import TripCard from ".././components/TripList/TripCard";
+import RideList from "../components/RideList/RideList";
+import RideCard from ".././components/RideList/RideCard";
 import { Grid, Form, Button, Select } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { fetchTrips, reserveSeat, selectTrip, searchStart, searchEnd, setFilteredTrips, setLastTripFiltered } from "../actions/trips";
+import { fetchRides, reserveSeat, selectRide, searchStart, searchEnd, setFilteredRides, setLastRideFiltered } from "../actions/trips";
 
 const location_options = [
   { key: 'any', text: 'any', value: '' },
@@ -15,17 +15,17 @@ const location_options = [
 
 
 
-class TripContainer extends Component {
+class RideContainer extends Component {
   state = {
-    searchedTrips: [],
+    searchedRides: [],
     searchTerm: '',
-    selectedTrip: [],
+    selectedRide: [],
     origin_option: "",
     destination_option: ""
   }
 
   componentDidMount() {
-    this.props.fetchTrips()
+    this.props.fetchRides()
   }
 
   handleStartLocationChange = (event, data) => {
@@ -43,17 +43,17 @@ class TripContainer extends Component {
   }
 
   // componentDidMount = () => {
-  //     if(this.props.lastTripFiltered.length){
-  //       this.props.setFilteredTrips(this.props.lastTripFiltered)
-  //       console.log("this.props.lastTripFiltered", this.props.lastTripFiltered)
+  //     if(this.props.lastRideFiltered.length){
+  //       this.props.setFilteredRides(this.props.lastRideFiltered)
+  //       console.log("this.props.lastRideFiltered", this.props.lastRideFiltered)
   //     }
   //   }
 
   render() {
-    console.log("TRIPCONTAINER", this.props.trips);
+    console.log("TRIPCONTAINER", this.props.rides);
     console.log("origin", this.state.origin_option);
 
-    const filteredTrips = this.props.trips.filter(trip =>{ return trip.start_location.includes(this.state.origin_option ) && trip.end_location.includes(this.state.destination_option)})
+    const filteredRides = this.props.rides.filter(ride =>{ return ride.start_location.includes(this.state.origin_option ) && ride.end_location.includes(this.state.destination_option)})
 
 
     return (
@@ -84,7 +84,7 @@ class TripContainer extends Component {
             </Form.Field>
 
       </Form.Group>
-      <TripList trips={filteredTrips}/>
+      <RideList rides={filteredRides}/>
       </div>
     )
   }
@@ -95,21 +95,21 @@ class TripContainer extends Component {
 function mapStateToProps(state) {
   console.log(state);
   return {
-    trips: state.trips,
-    filteredTrips: this.filteredTrips,
-    lastTripFiltered:this.lastTripFiltered
+    rides: state.rides,
+    filteredRides: this.filteredRides,
+    lastRideFiltered:this.lastRideFiltered
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchTrips: (trips) => dispatch(fetchTrips(trips))
+    fetchRides: (rides) => dispatch(fetchRides(rides))
     }
     searchStart,
-    setLastTripFiltered,
-    setFilteredTrips
+    setLastRideFiltered,
+    setFilteredRides
 }
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(TripContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(RideContainer);
