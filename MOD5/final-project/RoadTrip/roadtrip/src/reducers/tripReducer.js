@@ -13,18 +13,18 @@
 //   export default tripReducer
 export default function tripReducer(
   state = {
-    trips: [],
+    rides: [],
     driver: {},
     passengers:[],
-    selectedTrip: {},
+    selectedRide: {},
     trip: {}
   },
   action
 ) {
   switch (action.type) {
-    case "FETCH_TRIPS":
-      console.log("REDUCER FOR TRIPS", action.payload);
-      return {...state, trips: action.payload, isLoading: false}
+    case "FETCH_RIDES":
+      console.log("REDUCER FOR RIDES", action.payload);
+      return {...state, rides: action.payload, isLoading: false}
     case "ADD_NEW_TRIP":
       return Object.assign({}, state, { trips: [...state.trips, action.payload] })
     case "SELECT_TRIP":
@@ -33,7 +33,7 @@ export default function tripReducer(
       return Object.assign({}, state, {
         driver: action.payload});
     case "ADD_PASSENGERS":
-      return Object.assign({}, state, {passengers: [...state.passengers, action.payload]})
+      return Object.assign({}, state, {riders: [...state.passengers, action.payload]})
     case "LOADING":
       console.log("Loading")
       return {...state}

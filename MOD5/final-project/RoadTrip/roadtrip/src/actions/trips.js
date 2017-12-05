@@ -14,13 +14,13 @@ export function createTrip(tripObj) {
   }
 }
 
-export function fetchTrips() {
+export function fetchRides() {
   return function(dispatch) {
-    console.log("FETCHING TRIPS");
-    dispatch({type: "LOADING_TRIPS"})
-    BackendAPI.fetchTrips()
+    console.log("FETCHING RIDES");
+    dispatch({type: "LOADING_RIDES"})
+    BackendAPI.fetchRides()
       .then(json => {
-        dispatch({type: "FETCH_TRIPS", payload: json})
+        dispatch({type: "FETCH_RIDES", payload: json})
       }
     )
   }
@@ -53,17 +53,17 @@ export function searchStart(trips, start_location) {
   };
 }
 
-export function setFilteredTrips(filteredTrips) {
+export function setFilteredRides(filteredRides) {
   return {
-    type: "SET_FILTERED_TRIPS",
-    payload: filteredTrips,
+    type: "SET_FILTERED_RIDES",
+    payload: filteredRides,
   }
 }
 
-export function setLastTripFiltered(filteredTrips){
+export function setLastRideFiltered(filteredRides){
   return{
-    type: "LAST_TRIP_FILTERED",
-    payload: filteredTrips
+    type: "LAST_RIDE_FILTERED",
+    payload: filteredRides
   }
 }
 

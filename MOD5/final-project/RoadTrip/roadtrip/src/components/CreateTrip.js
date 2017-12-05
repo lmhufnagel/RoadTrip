@@ -22,7 +22,7 @@ class CreateTripContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    selectedTrip: state.trips.selectedTrip,
+    selectedTrip: state.rides.selectedTrip,
     // currentUser: state.user.currentUser
   }
 }

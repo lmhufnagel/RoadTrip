@@ -17,8 +17,9 @@ class TripCard extends Component {
     }else {
       console.log("clicked!", this.props.id)
       const seatObj = {seat: {
-        trip_id: this.props.id,
-        user_id: 1
+        available: false,
+        ride_id: this.props.id,
+        rider_id: 1
       }}
       this.props.reserveSeat(seatObj)
       // this.props.removeSeat(this.props.available_seats - 1)
@@ -27,13 +28,13 @@ class TripCard extends Component {
   }
 
   createTripCards = () => {
-    return this.props.trips.map(t => {
+    return this.props.rides.map(t => {
       return (
         <Card>
           <Card.Content>
             <Card.Header onClick={this.handleClick}>
 
-              {t.username}
+              {t.driver.username}
             </Card.Header>
             <Card.Meta>
               <span className="date">{t.start_location}</span>
@@ -55,13 +56,13 @@ class TripCard extends Component {
 
   render() {
     // console.log("Card State", this.state);
-    // console.log("card", this.props);
+    console.log("card", this.props);
 
     return (
       <Card fluid >
         <Card.Content extra>
           <Card.Header>
-          Driver: {this.props.driver_username}
+          Driver: {this.props.driver.username}
           </Card.Header>
           <Card.Description> Origin: {this.props.start_location} => Departure Time: {this.props.start_time}</Card.Description>
           <Card.Description>Destination: {this.props.end_location} => Estimated Arrival Time: {this.props.end_time}</Card.Description>
@@ -70,7 +71,7 @@ class TripCard extends Component {
           <Card.Description>Rating: {this.props.rating}</Card.Description>
           <Card.Description>About this trip: {this.props.comments}</Card.Description>
           <Card.Description>Trip ID: {this.props.id}</Card.Description>
-          <div className='ui two buttons'>
+          <div className='reserve button'>
             <Button basic color='green' onClick={this.handleReserve}>Reserve a seat! </Button>
           </div>
       </Card.Content>

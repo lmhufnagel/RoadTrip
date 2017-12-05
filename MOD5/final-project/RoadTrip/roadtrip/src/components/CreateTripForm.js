@@ -99,7 +99,7 @@ class CreateTripForm extends Component {
        seat_price:this.state.seat_price,
        duration: this.state.duration,
        comments: this.state.comments,
-       user_id: 1
+       driver_id: 1
       }
     }
     //  tripObj.trip.owner_id = this.props.currentUser.id
